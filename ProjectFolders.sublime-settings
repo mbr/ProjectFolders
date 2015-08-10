@@ -1,7 +1,8 @@
 {
   "project_dirs": [
     "~"
-  ]
+  ],
+  "project_file_format": "{0[path]}/.{0[basename]}.sublime-project"
 }
 
 
