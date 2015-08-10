@@ -1,4 +1,6 @@
+import json
 import os
+import subprocess
 
 import sublime_plugin
 
@@ -16,6 +18,16 @@ class ProjectfolderCommand(sublime_plugin.WindowCommand):
 
     def open_project_folder(self, path):
         print('opening project associated with {}'.format(path))
+        basename = os.path.basename(path)
+        project_file = os.path.join(path, basename + '.sublime-project')
+        print('project file: {}'.format(project_file))
+
+        # if the project does not exist, create it
+        if not os.path.exists(project_file):
+            with open(project_file, 'w') as out:
+                json.dump({}, out)
+
+        open_project_in_window(self.window, project_file)
 
     def run(self):
         # collect list of packages
@@ -33,6 +45,6 @@ class ProjectfolderCommand(sublime_plugin.WindowCommand):
             if n == -1:
                 return
 
-            self.open_project_folder(entries[n])
+            self.open_project_folder(os.path.expanduser(entries[n]))
 
         self.window.show_quick_panel(entries, _open_entry)
