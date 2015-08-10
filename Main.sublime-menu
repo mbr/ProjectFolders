@@ -1,0 +1,8 @@
+[{
+  "id": "project",
+  "children": [
+    {"id": "projectfolder",
+     "command": "projectfolder",
+     "caption": "Open project folder..."}
+  ]
+}]
