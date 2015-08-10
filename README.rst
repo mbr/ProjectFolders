@@ -44,6 +44,7 @@ Configuration
 Settings are read from ``ProjectFolders.sublime-settings`` in your ``User``
 package:
 
+------------------- -----------
 Setting             Description
 ------------------- -----------
 project_dirs        A list of directories to look in for projects. ``~`` will
