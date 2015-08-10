@@ -4,6 +4,13 @@ import sublime
 import sublime_plugin
 
 
+def open_project_in_window(window, project_file, subl='subl'):
+    window.run_command("close_project")
+    window.run_command("close_all")
+
+    subprocess.check_call([subl, '--project', project_file, ])
+
+
 class ProjectfolderCommand(sublime_plugin.WindowCommand):
     def description(self):
         return 'Open a folder and the associated project'
