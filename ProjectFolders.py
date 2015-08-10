@@ -35,15 +35,15 @@ class ProjectfolderCommand(sublime_plugin.WindowCommand):
 
     def run(self):
         # collect list of packages
-        dirs = ['~']
+        dirs = settings.get('project_dirs')
 
         entries = []
 
         for basedir in dirs:
+            sub_entries = []
             for dn in os.listdir(os.path.expanduser(basedir)):
-                entries.append(os.path.join(basedir, dn))
-
-        entries.sort()
+                sub_entries.append(os.path.join(basedir, dn))
+            entries.extend(sorted(sub_entries))
 
         def _open_entry(n):
             if n == -1:
