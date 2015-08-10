@@ -1,6 +1,8 @@
 Project Folders for Sublime Text
 ================================
 
+.. img:: demo.gif
+
 Creating projects in Sublime can be tedious, especially if you are using your
 filesystem as your project manager already. This plugin maps your filesystem
 structure to sublime projects, automatically creating ``.sublime-project``
