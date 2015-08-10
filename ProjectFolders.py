@@ -12,8 +12,8 @@ def open_project_in_window(window, project_file, subl='subl'):
 
     subprocess.check_call([subl, '--project', project_file, ])
 
-# settings are reloaded automatically, no need to fetch these every time
-settings = sublime.load_settings('ProjectFolders.sublime-settings')
+def get_settings():
+    return sublime.load_settings('ProjectFolders.sublime-settings')
 
 
 class ProjectfolderCommand(sublime_plugin.WindowCommand):
@@ -29,7 +29,7 @@ class ProjectfolderCommand(sublime_plugin.WindowCommand):
             'dirname': os.path.dirname(path),
         }
 
-        project_file = settings.get('project_file_format').format(d)
+        project_file = get_settings().get('project_file_format').format(d)
         print('project file: {}'.format(project_file))
 
         # if the project does not exist, create it
@@ -42,7 +42,7 @@ class ProjectfolderCommand(sublime_plugin.WindowCommand):
 
     def run(self):
         # collect list of packages
-        dirs = settings.get('project_dirs')
+        dirs = get_settings().get('project_dirs', [])
 
         entries = []
 
