@@ -36,3 +36,9 @@ to your ``Default (...).sublime-keymap`` in your ``User`` package:
         "command": "projectfolder"
       }
     ]
+
+
+Open issues
+-----------
+
+Currently, ProjectFolders is not on PackageControl and has no Windows support.
