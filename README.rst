@@ -38,6 +38,22 @@ to your ``Default (...).sublime-keymap`` in your ``User`` package:
     ]
 
 
+Configuration
+-------------
+
+Settings are read from ``ProjectFolders.sublime-settings`` in your ``User``
+package:
+
+Setting             Description
+------------------- -----------
+project_dirs        A list of directories to look in for projects. ``~`` will
+                    be expanded to ``$HOME``.
+project_file_format The format string to create the filename of the project
+                    file. Supports ``{0[path]}``, ``{0[basename]}`` and ``{0
+                    [dirname]}``. Can be used to put all project files into a
+                    single directory by not using ``{0[path]}``.
+
+
 Open issues
 -----------
 
