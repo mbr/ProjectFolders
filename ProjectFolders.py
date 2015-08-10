@@ -22,8 +22,14 @@ class ProjectfolderCommand(sublime_plugin.WindowCommand):
 
     def open_project_folder(self, path):
         print('opening project associated with {}'.format(path))
-        basename = os.path.basename(path)
-        project_file = os.path.join(path, basename + '.sublime-project')
+        # information available for pathname generation
+        d = {
+            'basename': os.path.basename(path),
+            'path': path,
+            'dirname': os.path.dirname(path),
+        }
+
+        project_file = settings.get('project_file_format').format(d)
         print('project file: {}'.format(project_file))
 
         # if the project does not exist, create it
