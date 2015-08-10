@@ -2,6 +2,7 @@ import json
 import os
 import subprocess
 
+import sublime
 import sublime_plugin
 
 
@@ -10,6 +11,9 @@ def open_project_in_window(window, project_file, subl='subl'):
     window.run_command("close_all")
 
     subprocess.check_call([subl, '--project', project_file, ])
+
+# settings are reloaded automatically, no need to fetch these every time
+settings = sublime.load_settings('ProjectFolders.sublime-settings')
 
 
 class ProjectfolderCommand(sublime_plugin.WindowCommand):
