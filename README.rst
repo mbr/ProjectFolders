@@ -2,8 +2,8 @@ Project Folders for Sublime Text
 ================================
 
 .. image:: demo.gif
-   :height: 849 px
-   :width: 540 px
+   :height: 540 px
+   :width: 849 px
 
 Creating projects in Sublime can be tedious, especially if you are using your
 filesystem as your project manager already. This plugin maps your filesystem
