@@ -35,7 +35,8 @@ class ProjectfolderCommand(sublime_plugin.WindowCommand):
         # if the project does not exist, create it
         if not os.path.exists(project_file):
             with open(project_file, 'w') as out:
-                json.dump({}, out)
+                proj = {'folders': [{'path': path}]}
+                json.dump(proj, out)
 
         open_project_in_window(self.window, project_file)
 
