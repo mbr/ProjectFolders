@@ -12,6 +12,7 @@ def open_project_in_window(window, project_file, subl='subl'):
 
     subprocess.check_call([subl, '--project', project_file, ])
 
+
 def get_settings():
     return sublime.load_settings('ProjectFolders.sublime-settings')
 
@@ -40,11 +41,29 @@ class ProjectfolderCommand(sublime_plugin.WindowCommand):
 
         open_project_in_window(self.window, project_file)
 
+    def create_project_folder(self, path):
+        def on_done(s):
+            if not s:
+                sublime.status_message('No input, no new project created')
+                return
+
+            dn = os.path.join(os.path.expanduser(path), s)
+            os.mkdir(dn)
+            sublime.status_message('Created {}'.format(dn))
+
+            # now that the folder has been created, open it
+            self.open_project_folder(dn)
+
+        self.window.show_input_panel(
+            path, '', on_done,
+            on_change=lambda s: None,
+            on_cancel=lambda: None)
+
     def run(self):
         # collect list of packages
         dirs = get_settings().get('project_dirs', [])
 
-        entries = []
+        entries = ['[+] Create new folder in {}'.format(d) for d in dirs]
 
         for basedir in dirs:
             sub_entries = []
@@ -56,6 +75,9 @@ class ProjectfolderCommand(sublime_plugin.WindowCommand):
             if n == -1:
                 return
 
-            self.open_project_folder(os.path.expanduser(entries[n]))
+            if n < len(dirs):
+                self.create_project_folder(dirs[n])
+            else:
+                self.open_project_folder(os.path.expanduser(entries[n]))
 
         self.window.show_quick_panel(entries, _open_entry)
