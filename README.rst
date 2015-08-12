@@ -59,6 +59,7 @@ project_file_format The format string to create the filename of the project
                     single directory by not using ``{0[path]}``.
 =================== ==========================================================
 
+
 Open issues
 -----------
 
