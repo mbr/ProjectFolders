@@ -58,10 +58,11 @@ class ProjectfolderCommand(sublime_plugin.WindowCommand):
             # now that the folder has been created, open it
             self.open_project_folder(dn)
 
-        self.window.show_input_panel(
-            path, '', on_done,
-            on_change=lambda s: None,
-            on_cancel=lambda: None)
+        self.window.show_input_panel(path,
+                                     '',
+                                     on_done,
+                                     on_change=lambda s: None,
+                                     on_cancel=lambda: None)
 
     def run(self):
         # collect list of packages
