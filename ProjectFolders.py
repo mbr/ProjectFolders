@@ -17,6 +17,12 @@ def get_settings():
     return sublime.load_settings('ProjectFolders.sublime-settings')
 
 
+def get_project_dirs():
+    return [os.path.expanduser(d)
+            for d in get_settings().get('project_dirs', [])
+            if os.path.exists(os.path.expanduser(d))]
+
+
 class ProjectfolderCommand(sublime_plugin.WindowCommand):
     def description(self):
         return 'Open a folder and the associated project'
@@ -59,7 +65,7 @@ class ProjectfolderCommand(sublime_plugin.WindowCommand):
 
     def run(self):
         # collect list of packages
-        dirs = get_settings().get('project_dirs', [])
+        dirs = get_project_dirs()
 
         entries = ['[+] Create new folder in {}'.format(d) for d in dirs]
 
